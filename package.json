@@ -1,0 +1,11 @@
+{
+  "name": "idea-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:color": "pnpm --filter color-wizard dev",
+    "dev:json": "pnpm --filter json-toolkit dev",
+    "build": "pnpm -r build",
+    "test": "pnpm -r test"
+  }
+}
