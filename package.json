@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "dev": "live-server . --port=8080",
     "dev:color": "pnpm --filter color-wizard dev",
     "dev:json": "pnpm --filter json-toolkit dev",
     "build": "pnpm -r build",
