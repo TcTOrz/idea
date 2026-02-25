@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Idea Projects</title>
+    <title>Idea Projects | TcTOrz</title>
     <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-gradient: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-main: #111827;
+            --text-sub: #6b7280;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             margin: 0;
@@ -14,68 +23,221 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color: #f3f4f6;
+            background: var(--bg-gradient);
+            color: var(--text-main);
         }
+
         .container {
-            max-width: 800px;
+            max-width: 900px;
+            width: 90%;
             padding: 2rem;
             text-align: center;
         }
-        h1 {
-            color: #111827;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
+
+        header {
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease-out;
         }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background: #fff;
+            padding: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 0.5rem 0;
+            font-size: 2.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .bio {
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 1rem auto;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background: rgba(79, 70, 229, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            perspective: 1000px;
         }
+
         .card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             color: inherit;
+            border: 1px solid rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
         .card h2 {
-            color: #4f46e5;
-            margin-top: 0;
-            margin-bottom: 0.5rem;
+            color: var(--text-main);
+            margin: 1rem 0 0.5rem;
+            font-size: 1.5rem;
         }
+
         .card p {
-            color: #6b7280;
+            color: var(--text-sub);
             margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
+
         .icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block;
+            font-size: 2.5rem;
+            background: rgba(79, 70, 229, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1rem;
+            transition: transform 0.3s ease;
         }
+
+        .card:hover .icon {
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(79, 70, 229, 0.2);
+        }
+
+        footer {
+            margin-top: 4rem;
+            color: var(--text-sub);
+            font-size: 0.875rem;
+            animation: fadeIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Staggered animation for cards */
+        .card:nth-child(1) { animation: fadeIn 0.6s ease-out 0.2s both; }
+        .card:nth-child(2) { animation: fadeIn 0.6s ease-out 0.4s both; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Idea Projects</h1>
+        <header>
+            <div class="avatar">
+                <!-- Using a generic dev avatar or placeholder -->
+                <img src="https://avatars.githubusercontent.com/u/10292863?v=4" alt="TcTOrz">
+            </div>
+            <h1>Idea Projects</h1>
+            <p class="bio">
+                这里是 <strong>TcTOrz</strong> 的创意实验室。
+                <br>
+                我热衷于探索前端技术，记录学习心得，并创造有趣的 Web 应用。
+            </p>
+            <a href="https://tctorz.github.io/" class="social-link" target="_blank">
+                <span>访问我的博客</span>
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
+            </a>
+        </header>
+
         <div class="grid">
             <a href="/json-toolkit/" class="card">
                 <span class="icon">🔧</span>
                 <h2>JSON Toolkit</h2>
-                <p>A powerful JSON editor, formatter, and validator.</p>
+                <p>一个强大的 JSON 在线编辑器、格式化和校验工具。支持压缩、主题切换和文件上传。</p>
             </a>
             <a href="/color-wizard/" class="card">
                 <span class="icon">🎨</span>
                 <h2>Color Wizard</h2>
-                <p>Advanced color palette generator and manipulation tool.</p>
+                <p>高级色彩生成与调色板工具。支持多种色彩算法，实时预览，一键导出 CSS/JSON。</p>
             </a>
         </div>
+
+        <footer>
+            <p>&copy; 2024 TcTOrz. All rights reserved.</p>
+        </footer>
     </div>
 </body>
 </html>
