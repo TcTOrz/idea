@@ -1,10 +1,8 @@
-name: Deploy JSON Toolkit
+name: Deploy All Projects
 
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'json-toolkit/**'
 
 jobs:
   deploy:
@@ -28,12 +26,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build JSON Toolkit
-        run: pnpm --filter json-toolkit build
+      - name: Build All Projects
+        run: pnpm -r build
+
+      # Prepare deployment directory
+      - name: Prepare Deployment
+        run: |
+          mkdir -p public/json-toolkit
+          mkdir -p public/color-wizard
+          cp -r json-toolkit/dist/* public/json-toolkit/
+          cp -r color-wizard/dist/* public/color-wizard/
+          cp index.html public/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./json-toolkit/dist
-          cname: json-toolkit.ifwechat.com
+          publish_dir: ./public
+          cname: ifwechat.com
