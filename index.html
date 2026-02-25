@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <title>Idea Projects | TcTOrz</title>
+    <!-- Google AdSense 预留位置: 请在通过审核后，将 Google 提供的 script 标签粘贴在这里 -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
     <style>
         :root {
             --primary: #4f46e5;
@@ -93,6 +95,27 @@
 
         .social-link:hover {
             background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .sponsor-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #d97706;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+            margin-left: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            background: rgba(251, 191, 36, 0.1);
+            transition: all 0.2s ease;
+        }
+
+        .sponsor-link:hover {
+            background: #d97706;
             color: white;
             transform: translateY(-2px);
         }
@@ -220,6 +243,9 @@
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
+            </a>
+            <a href="#" class="sponsor-link" title="暂未配置链接">
+                <span>☕ 请我喝咖啡</span>
             </a>
         </header>
 
