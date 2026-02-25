@@ -1,0 +1,52 @@
+{
+  "app": {
+    "title": "PaletteCraft",
+    "docs": "Documentation",
+    "github": "GitHub",
+    "strategy": "Strategy",
+    "baseColor": "Base Color",
+    "generate": "Generate Random",
+    "currentPalette": "Current Palette",
+    "realtimePreview": "Real-time Preview",
+    "exportCode": "Export & Code",
+    "cssVars": "CSS Variables",
+    "json": "JSON"
+  },
+  "strategies": {
+    "analogous": "Analogous",
+    "complementary": "Complementary",
+    "triadic": "Triadic",
+    "tetradic": "Tetradic",
+    "monochromatic": "Monochromatic",
+    "split-complementary": "Split Complementary",
+    "custom": "Custom"
+  },
+  "strategiesDesc": {
+    "analogous": "Colors that are next to each other on the color wheel.",
+    "complementary": "Colors that are opposite each other on the color wheel.",
+    "triadic": "Colors that are evenly spaced around the color wheel.",
+    "tetradic": "Four colors arranged into two complementary pairs.",
+    "monochromatic": "Different shades and tints of a single hue.",
+    "split-complementary": "Base color plus two colors adjacent to its complement."
+  },
+  "preview": {
+    "title": "UI Preview",
+    "brand": "Brand",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "heroTitle": "Modern Color Palette",
+    "heroDesc": "Generate beautiful color schemes for your projects.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More",
+    "secondary": "Secondary",
+    "secondaryDesc": "Used for accents and highlights.",
+    "accent": "Accent",
+    "accentDesc": "Used for calls to action."
+  },
+  "actions": {
+    "copyHex": "Copy Hex",
+    "copy": "Copy",
+    "copied": "Copied!"
+  }
+}

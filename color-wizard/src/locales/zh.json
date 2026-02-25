@@ -1,0 +1,52 @@
+{
+  "app": {
+    "title": "PaletteCraft",
+    "docs": "文档",
+    "github": "GitHub",
+    "strategy": "配色策略",
+    "baseColor": "主题色",
+    "generate": "随机生成",
+    "currentPalette": "当前配色",
+    "realtimePreview": "实时预览",
+    "exportCode": "导出代码",
+    "cssVars": "CSS 变量",
+    "json": "JSON"
+  },
+  "strategies": {
+    "analogous": "类似色",
+    "complementary": "互补色",
+    "triadic": "三色系",
+    "tetradic": "四色系",
+    "monochromatic": "单色系",
+    "split-complementary": "分裂互补",
+    "custom": "自定义"
+  },
+  "strategiesDesc": {
+    "analogous": "色轮上相邻的颜色，和谐自然。",
+    "complementary": "色轮上相对的颜色，对比强烈。",
+    "triadic": "色轮上均匀分布的三种颜色。",
+    "tetradic": "两对互补色组成的四种颜色。",
+    "monochromatic": "同一色相的不同明度和饱和度。",
+    "split-complementary": "主色加上其互补色两侧的颜色。"
+  },
+  "preview": {
+    "title": "界面预览",
+    "brand": "品牌",
+    "home": "首页",
+    "about": "关于",
+    "contact": "联系我们",
+    "heroTitle": "现代配色方案",
+    "heroDesc": "为您的项目生成美观的配色方案。",
+    "getStarted": "开始使用",
+    "learnMore": "了解更多",
+    "secondary": "辅助色",
+    "secondaryDesc": "用于强调和高亮。",
+    "accent": "强调色",
+    "accentDesc": "用于行动号召按钮。"
+  },
+  "actions": {
+    "copyHex": "复制 Hex",
+    "copy": "复制",
+    "copied": "已复制!"
+  }
+}
