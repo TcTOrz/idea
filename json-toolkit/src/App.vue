@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import JsonEditor from './components/JsonEditor.vue'
 import { ElMessage } from 'element-plus'
-import { Moon, Sunny, CopyDocument, Delete, Check, MagicStick, Rank, Setting, More, Upload } from '@element-plus/icons-vue'
+import { Moon, Sunny, CopyDocument, Delete, Check, MagicStick, Rank, More, Upload } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
 
 const { t, locale } = useI18n()
@@ -25,7 +25,7 @@ const themes = [
 
 const currentThemeClass = computed(() => {
   const theme = themes.find(t => t.color === primaryColor.value)
-  return theme ? theme.class : themes[0].class
+  return theme ? theme.class : themes[0]!.class
 })
 
 const editorTheme = computed(() => isDark.value ? 'vs-dark' : 'vs')
