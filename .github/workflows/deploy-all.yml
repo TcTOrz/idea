@@ -36,10 +36,12 @@ jobs:
           mkdir -p public/color-wizard
           mkdir -p public/regex-visualizer
           mkdir -p public/diff-checker
+          mkdir -p public/css-effects-generator
           cp -r json-toolkit/dist/* public/json-toolkit/
           cp -r color-wizard/dist/* public/color-wizard/
           cp -r regex-visualizer/dist/* public/regex-visualizer/
           cp -r diff-checker/dist/* public/diff-checker/
+          cp -r css-effects-generator/dist/* public/css-effects-generator/
           cp index.html public/
           cp favicon.svg public/
 

@@ -3,3 +3,4 @@ packages:
   - 'json-toolkit'
   - 'regex-visualizer'
   - 'diff-checker'
+  - 'css-effects-generator'
