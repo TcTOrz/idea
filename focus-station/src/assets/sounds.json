@@ -1,0 +1,40 @@
+[
+  {
+    "category": "噪音",
+    "sounds": [
+      {
+        "name": "白噪音",
+        "files": [
+          "/focus-station/music/噪音/白噪音/白噪声.mp3"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "场所",
+    "sounds": [
+      {
+        "name": "键盘声",
+        "files": [
+          "/focus-station/music/场所/键盘声/iPhone键盘-打字.mp3",
+          "/focus-station/music/场所/键盘声/机械键盘-打字.mp3",
+          "/focus-station/music/场所/键盘声/键盘-快速打字.mp3",
+          "/focus-station/music/场所/键盘声/键盘-打字-AMSR.mp3"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "自然",
+    "sounds": [
+      {
+        "name": "雨声",
+        "files": [
+          "/focus-station/music/自然/雨声/中雨.mp3",
+          "/focus-station/music/自然/雨声/大雨.mp3",
+          "/focus-station/music/自然/雨声/小雨.mp3"
+        ]
+      }
+    ]
+  }
+]

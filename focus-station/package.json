@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "scan-sounds": "tsx scripts/scan-sounds.ts",
+    "predev": "npm run scan-sounds",
+    "prebuild": "npm run scan-sounds",
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview"

@@ -142,7 +142,8 @@
 
 <script setup lang="ts">
 import { ref, computed, onUnmounted, onMounted } from 'vue'
-import { VideoPlay, VideoPause, Operation, Monitor, Pouring } from '@element-plus/icons-vue'
+import { VideoPlay, VideoPause, Operation, Monitor, Pouring, CoffeeCup, Headset, Grape, Ship, HotWater, Sunny, Moon, Lightning, WindPower } from '@element-plus/icons-vue'
+import soundConfig from '../assets/sounds.json'
 
 interface Sound {
   id: string
@@ -158,38 +159,22 @@ interface Sound {
 
 const activeCategory = ref('all')
 
-// Hardcoded sound configuration based on file structure
-const rawSoundConfig = [
-  {
-    category: '自然',
-    sounds: [
-      { 
-        name: '雨声', 
-        icon: Pouring,
-        files: [
-          '/focus-station/music/自然/雨声/1.mp3', 
-          '/focus-station/music/自然/雨声/2.mp3', 
-          '/focus-station/music/自然/雨声/3.mp3'
-        ] 
-      }
-    ]
-  },
-  {
-    category: '场所',
-    sounds: [
-      { 
-        name: '键盘声', 
-        icon: Monitor,
-        files: [
-          '/focus-station/music/场所/键盘声/1.mp3', 
-          '/focus-station/music/场所/键盘声/2.mp3'
-        ] 
-      }
-    ]
-  }
-]
+// Map category names to icons
+const iconMap: Record<string, any> = {
+  '雨声': Pouring,
+  '键盘声': Monitor,
+  '咖啡馆': CoffeeCup,
+  '海浪': Ship,
+  '白噪音': Headset,
+  '森林': Grape,
+  '篝火': HotWater,
+  '风声': WindPower,
+  '雷声': Lightning,
+  '夜晚': Moon,
+  '自然': Sunny
+}
 
-const categories = computed(() => rawSoundConfig.map(c => c.category))
+const categories = computed(() => soundConfig.map(c => c.category))
 
 const sounds = ref<Sound[]>([])
 
@@ -204,16 +189,16 @@ const displayedSounds = computed(() => {
 })
 
 onMounted(() => {
-  // Initialize sounds
-  rawSoundConfig.forEach(cat => {
+  // Initialize sounds from dynamic config
+  soundConfig.forEach(cat => {
     cat.sounds.forEach((s, index) => {
       const firstFile = s.files[0]
       if (!firstFile) return
       
       sounds.value.push({
-        id: `${cat.category}-${index}`,
+        id: `${cat.category}-${s.name}-${index}`,
         name: s.name,
-        icon: s.icon,
+        icon: iconMap[s.name] || iconMap[cat.category] || Headset,
         enabled: false,
         volume: 50,
         audio: new Audio(encodeAudioPath(firstFile)),
