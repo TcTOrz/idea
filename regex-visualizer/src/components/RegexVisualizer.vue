@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useDark, useToggle } from '@vueuse/core'
+import { useDark, useToggle, useWindowSize } from '@vueuse/core'
 import { Moon, Sunny, Collection } from '@element-plus/icons-vue'
 import RegexLibrary from './RegexLibrary.vue'
 import type { RegexPattern } from '../data/regex-patterns'
@@ -9,6 +9,9 @@ import type { RegexPattern } from '../data/regex-patterns'
 const { t, locale } = useI18n()
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
+const { width } = useWindowSize()
+
+const drawerSize = computed(() => width.value < 768 ? '100%' : '400px')
 
 const showLibrary = ref(false)
 const pattern = ref('([A-Z])\\w+')
@@ -143,10 +146,10 @@ const matchCount = computed(() => segments.value.filter(s => s.isMatch).length)
         v-model="showLibrary"
         :title="t('library.title')"
         direction="rtl"
-        size="400px"
+        :size="drawerSize"
         :with-header="false"
       >
-        <RegexLibrary @select="handlePatternSelect" />
+        <RegexLibrary @select="handlePatternSelect" @close="showLibrary = false" />
       </el-drawer>
 
       <el-main class="main-content">

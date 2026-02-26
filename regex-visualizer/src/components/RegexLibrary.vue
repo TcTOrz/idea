@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Search } from '@element-plus/icons-vue'
+import { Search, Close } from '@element-plus/icons-vue'
 import { regexCategories, type RegexPattern } from '../data/regex-patterns'
 
 const { t } = useI18n()
@@ -9,6 +9,7 @@ const searchQuery = ref('')
 
 const emit = defineEmits<{
   (e: 'select', pattern: RegexPattern): void
+  (e: 'close'): void
 }>()
 
 const filteredCategories = computed(() => {
@@ -37,7 +38,12 @@ const handleSelect = (pattern: RegexPattern) => {
 <template>
   <div class="library-container">
     <div class="library-header">
-      <h3>{{ t('library.title') }}</h3>
+      <div class="header-top">
+        <h3>{{ t('library.title') }}</h3>
+        <el-button link class="close-btn" @click="$emit('close')">
+          <el-icon :size="20"><Close /></el-icon>
+        </el-button>
+      </div>
       <el-input
         v-model="searchQuery"
         :placeholder="t('library.search')"
@@ -88,10 +94,26 @@ const handleSelect = (pattern: RegexPattern) => {
   border-bottom: 1px solid var(--el-border-color);
 }
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
 .library-header h3 {
-  margin: 0 0 12px 0;
+  margin: 0;
   font-size: 16px;
   color: var(--el-text-color-primary);
+}
+
+.close-btn {
+  padding: 0;
+  color: var(--el-text-color-secondary);
+}
+
+.close-btn:hover {
+  color: var(--el-color-primary);
 }
 
 .library-content {
@@ -162,4 +184,19 @@ const handleSelect = (pattern: RegexPattern) => {
   text-overflow: ellipsis;
   border: 1px solid var(--el-border-color-lighter);
 }
+
+@media (max-width: 768px) {
+  .library-header {
+    padding: 12px;
+  }
+
+  .library-content {
+    padding: 12px;
+  }
+  
+  .pattern-item {
+    padding: 10px;
+  }
+}
+
 </style>
