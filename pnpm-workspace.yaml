@@ -4,3 +4,4 @@ packages:
   - 'regex-visualizer'
   - 'diff-checker'
   - 'css-effects-generator'
+  - 'focus-station'

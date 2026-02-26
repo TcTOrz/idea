@@ -9,6 +9,7 @@
     "dev:regex": "pnpm --filter regex-visualizer dev",
     "dev:diff": "pnpm --filter diff-checker dev",
     "dev:css": "pnpm --filter css-effects-generator dev",
+    "dev:focus": "pnpm --filter focus-station dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test"
   }

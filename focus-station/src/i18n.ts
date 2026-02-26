@@ -1,0 +1,128 @@
+import { createI18n } from 'vue-i18n'
+
+const messages = {
+  en: {
+    app: {
+      title: 'Focus Station',
+      pomodoro: 'Pomodoro',
+      shortBreak: 'Short Break',
+      longBreak: 'Long Break',
+      start: 'Start',
+      pause: 'Pause',
+      reset: 'Reset',
+      tasks: 'Tasks',
+      addTask: 'Add Task',
+      noTasks: 'No tasks yet. Add one to get started!',
+      sounds: 'Ambient Sounds',
+      rain: 'Rain',
+      keyboard: 'Keyboard',
+      cafe: 'Cafe',
+      settings: 'Settings',
+      playing: 'Playing',
+      running: 'Running',
+      paused: 'Paused',
+      exploreSounds: 'Explore Your Sound Canvas',
+      exploreSubtitle: 'Over 240+ high-fidelity sounds. Mix and match to create infinite possibilities.',
+      all: 'All',
+      workDuration: 'Work Duration',
+      shortBreakDuration: 'Short Break Duration',
+      longBreakDuration: 'Long Break Duration',
+      minutes: 'minutes',
+      volume: 'Volume',
+      breathing: 'Breathing',
+      breathingIntro: 'Take a moment to breathe.',
+      breathingDuration: '4-4-4 Box Breathing',
+      technique_4_4_4: 'Box Breathing (4-4-4)',
+      technique_4_7_8: 'Relaxing Breath (4-7-8)',
+      technique_6_0_6: 'Resonance Breath (6-0-6)',
+      breath: {
+        inhale: 'Inhale',
+        hold: 'Hold',
+        exhale: 'Exhale'
+      },
+      hydration: 'Hydration',
+      cups: 'cups',
+      nextReminder: 'Next reminder',
+      greatJob: 'Great Job!',
+      hydrationGoalReached: 'You reached your hydration goal!',
+      drinkWaterReminder: 'Time to drink some water!',
+      sedentary: 'Sedentary',
+      sitting: 'Sitting',
+      moved: 'I Moved',
+      resume: 'Resume',
+      sedentaryWarning: 'Move Reminder',
+      timeToMove: 'You have been sitting for too long. Time to stretch!',
+      dailyGoal: 'Daily Goal',
+      reminderInterval: 'Reminder Interval',
+      technique: 'Technique'
+    }
+  },
+  zh: {
+    app: {
+      title: '专注工作台',
+      pomodoro: '专注',
+      shortBreak: '短休息',
+      longBreak: '长休息',
+      start: '开始',
+      pause: '暂停',
+      reset: '重置',
+      tasks: '任务清单',
+      addTask: '添加任务',
+      noTasks: '暂无任务，添加一个开始专注吧！',
+      sounds: '声音画布',
+      rain: '雨声',
+      keyboard: '键盘声',
+      cafe: '咖啡馆',
+      campfire: '篝火',
+      forest: '森林',
+      ocean: '海浪',
+      settings: '设置',
+      playing: '播放中',
+      running: '专注中',
+      paused: '已暂停',
+      exploreSounds: '探索你的声音画布',
+      exploreSubtitle: '超过 240+ 精选高保真音源，随意组合，创造无限可能。',
+      all: '全部',
+      workDuration: '专注时长',
+      shortBreakDuration: '短休息时长',
+      longBreakDuration: '长休息时长',
+      minutes: '分钟',
+      volume: '音量',
+      breathing: '深呼吸',
+      breathingIntro: '跟随节奏呼吸',
+      breathingDuration: '4-4-4 盒式呼吸法',
+      technique_4_4_4: '4-4-4 盒式呼吸法',
+      technique_4_7_8: '4-7-8 助眠呼吸',
+      technique_6_0_6: '6-0-6 共振呼吸',
+      breath: {
+        inhale: '吸气',
+        hold: '屏息',
+        exhale: '呼气'
+      },
+      hydration: '补水助手',
+      cups: '杯',
+      nextReminder: '下次提醒',
+      greatJob: '太棒了！',
+      hydrationGoalReached: '你达成了今天的喝水目标！',
+      drinkWaterReminder: '该喝水了！保持水分充足。',
+      sedentary: '久坐提醒',
+      sitting: '久坐中',
+      moved: '我动了',
+      resume: '恢复',
+      sedentaryWarning: '久坐提醒',
+      timeToMove: '你已经坐了很久了，起来活动一下吧！',
+      dailyGoal: '每日目标',
+      reminderInterval: '提醒间隔',
+      technique: '呼吸法'
+    }
+  }
+}
+
+const i18n = createI18n({
+  legacy: false,
+  locale: 'zh', // Default to Chinese
+  fallbackLocale: 'en',
+  messages
+})
+
+export default i18n
