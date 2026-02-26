@@ -34,9 +34,12 @@ jobs:
         run: |
           mkdir -p public/json-toolkit
           mkdir -p public/color-wizard
+          mkdir -p public/regex-visualizer
           cp -r json-toolkit/dist/* public/json-toolkit/
           cp -r color-wizard/dist/* public/color-wizard/
+          cp -r regex-visualizer/dist/* public/regex-visualizer/
           cp index.html public/
+          cp favicon.svg public/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
