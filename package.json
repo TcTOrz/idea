@@ -7,6 +7,7 @@
     "dev:color": "pnpm --filter color-wizard dev",
     "dev:json": "pnpm --filter json-toolkit dev",
     "dev:regex": "pnpm --filter regex-visualizer dev",
+    "dev:diff": "pnpm --filter diff-checker dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test"
   }
