@@ -6,6 +6,7 @@
     "dev": "live-server . --port=8080",
     "dev:color": "pnpm --filter color-wizard dev",
     "dev:json": "pnpm --filter json-toolkit dev",
+    "dev:regex": "pnpm --filter regex-visualizer dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test"
   }

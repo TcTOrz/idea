@@ -1,3 +1,4 @@
 packages:
   - 'color-wizard'
   - 'json-toolkit'
+  - 'regex-visualizer'
