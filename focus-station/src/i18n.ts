@@ -56,7 +56,11 @@ const messages = {
       timeToMove: 'You have been sitting for too long. Time to stretch!',
       dailyGoal: 'Daily Goal',
       reminderInterval: 'Reminder Interval',
-      technique: 'Technique'
+      technique: 'Technique',
+      coffee: {
+        title: 'Buy me a coffee',
+        desc: 'If you like this project, please consider buying me a coffee!'
+      }
     }
   },
   zh: {
@@ -117,7 +121,11 @@ const messages = {
       timeToMove: '你已经坐了很久了，起来活动一下吧！',
       dailyGoal: '每日目标',
       reminderInterval: '提醒间隔',
-      technique: '呼吸法'
+      technique: '呼吸法',
+      coffee: {
+        title: '请我喝咖啡',
+        desc: '如果这些工具对你有帮助，欢迎请我喝杯咖啡！'
+      }
     }
   }
 }

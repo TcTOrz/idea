@@ -1,0 +1,30 @@
+{
+  "name": "@idea/shared",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./vue": "./src/vue/index.ts",
+    "./react": "./src/react/index.ts"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0",
+    "element-plus": "^2.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "lucide-react": "^0.0.0",
+    "react-i18next": "^11.0.0",
+    "vue-i18n": "^9.0.0"
+  },
+  "devDependencies": {
+    "vue": "^3.5.25",
+    "vue-i18n": "^11.2.8",
+    "element-plus": "^2.13.1",
+    "@element-plus/icons-vue": "^2.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "lucide-react": "^0.469.0",
+    "react-i18next": "^15.2.0",
+    "typescript": "~5.6.2"
+  }
+}

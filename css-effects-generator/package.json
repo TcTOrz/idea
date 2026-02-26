@@ -12,7 +12,8 @@
     "@element-plus/icons-vue": "^2.3.2",
     "element-plus": "^2.13.1",
     "vue": "^3.5.25",
-    "vue-i18n": "^11.2.8"
+    "vue-i18n": "^11.2.8",
+    "@idea/shared": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

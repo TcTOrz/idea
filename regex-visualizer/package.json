@@ -15,7 +15,8 @@
     "railroad-diagrams": "^1.0.0",
     "sass": "^1.97.3",
     "vue": "^3.5.25",
-    "vue-i18n": "^11.2.8"
+    "vue-i18n": "^11.2.8",
+    "@idea/shared": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",

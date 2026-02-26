@@ -34,6 +34,7 @@
           </el-tab-pane>
         </el-tabs>
       </el-card>
+      <BuyCoffee />
     </div>
   </div>
 </template>
@@ -45,6 +46,7 @@ import { ArrowDown } from '@element-plus/icons-vue'
 import GlassmorphismGenerator from './components/GlassmorphismGenerator.vue'
 import NeumorphismGenerator from './components/NeumorphismGenerator.vue'
 import BoxShadowGenerator from './components/BoxShadowGenerator.vue'
+import { BuyCoffee } from '@idea/shared/vue'
 
 const { locale } = useI18n()
 const currentLang = ref(locale.value)

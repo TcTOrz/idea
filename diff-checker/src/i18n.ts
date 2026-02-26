@@ -27,6 +27,10 @@ const messages = {
       cut: 'Cut',
       selectAll: 'Select All',
       format: 'Format Document'
+    },
+    coffee: {
+      title: 'Buy me a coffee',
+      desc: 'If you like this project, please consider buying me a coffee!'
     }
   },
   zh: {
@@ -55,6 +59,10 @@ const messages = {
       cut: '剪切',
       selectAll: '全选',
       format: '格式化文档'
+    },
+    coffee: {
+      title: '请我喝咖啡',
+      desc: '如果这些工具对你有帮助，欢迎请我喝杯咖啡！'
     }
   }
 }

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import JsonEditor from './components/JsonEditor.vue'
+import { BuyCoffee } from '@idea/shared/vue'
 import { ElMessage } from 'element-plus'
 import { Moon, Sunny, CopyDocument, Delete, Check, MagicStick, Rank, More, Upload } from '@element-plus/icons-vue'
 import { useI18n } from 'vue-i18n'
@@ -372,6 +373,7 @@ const triggerFileUpload = () => {
         JSON Toolkit v1.0.0
       </div>
     </div>
+    <BuyCoffee />
   </div>
 </template>
 

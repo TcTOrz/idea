@@ -10,7 +10,11 @@
     "realtimePreview": "实时预览",
     "exportCode": "导出代码",
     "cssVars": "CSS 变量",
-    "json": "JSON"
+    "json": "JSON",
+    "coffee": {
+      "title": "请我喝咖啡",
+      "desc": "如果这些工具对你有帮助，欢迎请我喝杯咖啡！"
+    }
   },
   "strategies": {
     "analogous": "类似色",

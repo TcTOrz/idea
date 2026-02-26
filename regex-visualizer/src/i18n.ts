@@ -63,6 +63,10 @@ const messages = {
         id_card_cn: 'CN ID Card',
         id_card_cn_desc: 'Matches 18-digit Chinese ID card numbers.'
       }
+    },
+    coffee: {
+      title: 'Buy me a coffee',
+      desc: 'If you like this project, please consider buying me a coffee!'
     }
   },
   zh: {
@@ -127,6 +131,10 @@ const messages = {
         id_card_cn: '身份证 (CN)',
         id_card_cn_desc: '匹配 18 位中国居民身份证号码。'
       }
+    },
+    coffee: {
+      title: '请我喝咖啡',
+      desc: '如果这些工具对你有帮助，欢迎请我喝杯咖啡！'
     }
   }
 }

@@ -10,7 +10,11 @@
     "realtimePreview": "Real-time Preview",
     "exportCode": "Export & Code",
     "cssVars": "CSS Variables",
-    "json": "JSON"
+    "json": "JSON",
+    "coffee": {
+      "title": "Buy me a coffee",
+      "desc": "If you like this project, please consider buying me a coffee!"
+    }
   },
   "strategies": {
     "analogous": "Analogous",

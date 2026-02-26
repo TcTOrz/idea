@@ -26,6 +26,10 @@ const messages = {
       topRight: 'Top Right',
       bottomLeft: 'Bottom Left',
       bottomRight: 'Bottom Right',
+      coffee: {
+        title: 'Buy me a coffee',
+        desc: 'If you like this project, please consider buying me a coffee!'
+      }
     }
   },
   zh: {
@@ -53,6 +57,10 @@ const messages = {
       topRight: '右上',
       bottomLeft: '左下',
       bottomRight: '右下',
+      coffee: {
+        title: '请我喝咖啡',
+        desc: '如果这些工具对你有帮助，欢迎请我喝杯咖啡！'
+      }
     }
   }
 }

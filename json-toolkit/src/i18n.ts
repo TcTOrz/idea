@@ -28,7 +28,11 @@ const messages = {
       fontFamily: 'Family',
       upload: 'Upload',
       fileLoaded: 'File loaded successfully',
-      fileLoadError: 'Failed to load file'
+      fileLoadError: 'Failed to load file',
+      coffee: {
+        title: 'Buy me a coffee',
+        desc: 'If you like this project, please consider buying me a coffee!'
+      }
     }
   },
   zh: {
@@ -58,7 +62,11 @@ const messages = {
       fontFamily: '字体',
       upload: '上传',
       fileLoaded: '文件加载成功',
-      fileLoadError: '文件加载失败'
+      fileLoadError: '文件加载失败',
+      coffee: {
+        title: '请我喝咖啡',
+        desc: '如果这些工具对你有帮助，欢迎请我喝杯咖啡！'
+      }
     }
   }
 }

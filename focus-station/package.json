@@ -17,7 +17,8 @@
     "element-plus": "^2.13.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.25",
-    "vue-i18n": "^11.2.8"
+    "vue-i18n": "^11.2.8",
+    "@idea/shared": "workspace:*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.18",

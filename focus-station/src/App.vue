@@ -64,6 +64,7 @@
       <Settings 
         @update:settings="updateSettings" 
       />
+      <BuyCoffee />
     </div>
   </div>
 </template>
@@ -80,6 +81,7 @@ import Settings from './components/Settings.vue'
 import HydrationTracker from './components/HydrationTracker.vue'
 import SedentaryReminder from './components/SedentaryReminder.vue'
 import BreathingExercise from './components/BreathingExercise.vue'
+import { BuyCoffee } from '@idea/shared/vue'
 
 const { locale } = useI18n()
 const currentLang = ref(locale.value)
