@@ -28,11 +28,65 @@
     "category": "自然",
     "sounds": [
       {
+        "name": "夜晚",
+        "files": [
+          "/focus-station/music/自然/夜晚/夜晚-昆虫.mp3",
+          "/focus-station/music/自然/夜晚/夜晚-村庄.mp3",
+          "/focus-station/music/自然/夜晚/夜晚-蟋蟀.mp3",
+          "/focus-station/music/自然/夜晚/夜晚-蟋蟀1.mp3"
+        ]
+      },
+      {
+        "name": "森林",
+        "files": [
+          "/focus-station/music/自然/森林/森林-氛围.mp3",
+          "/focus-station/music/自然/森林/森林-蛙声.mp3"
+        ]
+      },
+      {
+        "name": "海浪声",
+        "files": [
+          "/focus-station/music/自然/海浪声/海浪1.mp3",
+          "/focus-station/music/自然/海浪声/海浪2.mp3"
+        ]
+      },
+      {
+        "name": "瀑布",
+        "files": [
+          "/focus-station/music/自然/瀑布/瀑布-水声.mp3",
+          "/focus-station/music/自然/瀑布/瀑布-落下.mp3"
+        ]
+      },
+      {
         "name": "雨声",
         "files": [
           "/focus-station/music/自然/雨声/中雨.mp3",
           "/focus-station/music/自然/雨声/大雨.mp3",
           "/focus-station/music/自然/雨声/小雨.mp3"
+        ]
+      },
+      {
+        "name": "雪声",
+        "files": [
+          "/focus-station/music/自然/雪声/雪声-踩雪.mp3"
+        ]
+      },
+      {
+        "name": "雷声",
+        "files": [
+          "/focus-station/music/自然/雷声/雷声-重雷.mp3",
+          "/focus-station/music/自然/雷声/雷声-雷滚.mp3",
+          "/focus-station/music/自然/雷声/雷声-雷雨.mp3"
+        ]
+      },
+      {
+        "name": "鸟鸣声",
+        "files": [
+          "/focus-station/music/自然/鸟鸣声/鸟鸣-早晨.mp3",
+          "/focus-station/music/自然/鸟鸣声/鸟鸣-早晨1.mp3",
+          "/focus-station/music/自然/鸟鸣声/鸟鸣1.mp3",
+          "/focus-station/music/自然/鸟鸣声/鸟鸣2.mp3",
+          "/focus-station/music/自然/鸟鸣声/鸟鸣3.mp3"
         ]
       }
     ]
