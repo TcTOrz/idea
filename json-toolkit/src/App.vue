@@ -40,7 +40,15 @@ const toggleTheme = () => {
 }
 
 const toggleLocale = () => {
-  locale.value = locale.value === 'zh' ? 'en' : 'zh'
+  const newLocale = locale.value === 'zh' ? 'en' : 'zh'
+  locale.value = newLocale
+  localStorage.setItem('json-toolkit-locale', newLocale)
+  
+  // Reload page to apply Monaco Editor language change
+  // Monaco Editor requires reload to switch localization
+  setTimeout(() => {
+    window.location.reload()
+  }, 100)
 }
 
 const setPrimaryColor = (color: string) => {

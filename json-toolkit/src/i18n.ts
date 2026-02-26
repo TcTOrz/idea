@@ -65,7 +65,7 @@ const messages = {
 
 const i18n = createI18n({
   legacy: false,
-  locale: 'zh', // default to Chinese as per user preference
+  locale: localStorage.getItem('json-toolkit-locale') || 'zh', // default to Chinese or saved preference
   fallbackLocale: 'en',
   messages
 })
