@@ -17,7 +17,7 @@ const emit = defineEmits<{
 }>()
 
 const { t, locale } = useI18n()
-const { monaco } = useMonaco()
+const { monacoRef } = useMonaco()
 
 const MONACO_EDITOR_OPTIONS = {
   automaticLayout: true,
@@ -28,9 +28,10 @@ const MONACO_EDITOR_OPTIONS = {
   contextmenu: true, // Enable context menu
 }
 
-// Function to update context menu actions
+// Function to update context menu actions (placeholder for future implementation)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const updateContextMenu = (editor: any) => {
-  if (!editor || !monaco) return
+  if (!editor || !monacoRef.value) return
 
   // We can't easily translate built-in Monaco items (like "Command Palette", "Copy", "Paste") 
   // without using a localized build of Monaco or nls configuration at loader level.
@@ -56,6 +57,9 @@ const handleMount = (editor: any) => {
   editor.onDidAttemptReadOnlyEdit(() => {
     ElMessage.warning(t('app.readOnlyWarning'))
   })
+  
+  // Call placeholder to avoid unused variable error
+  updateContextMenu(editor)
 }
 </script>
 
