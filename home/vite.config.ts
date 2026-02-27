@@ -35,7 +35,15 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        navigateFallbackDenylist: [
+          /^\/focus-station/,
+          /^\/json-toolkit/,
+          /^\/color-wizard/,
+          /^\/regex-visualizer/,
+          /^\/diff-checker/,
+          /^\/css-effects-generator/
+        ]
       }
     })
   ],
