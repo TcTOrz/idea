@@ -275,7 +275,9 @@ onMounted(() => {
         audio: new Audio(encodeAudioPath(firstFile)),
         category: cat.category,
         files: s.files,
-        currentFile: firstFile
+        currentFile: firstFile,
+        isLoading: false,
+        loadingProgress: 0
       })
     })
   })
@@ -335,7 +337,7 @@ const loadAudioWithProgress = async (sound: Sound, path: string) => {
       if (done) break
       
       if (value) {
-        chunks.push(value)
+        chunks.push(value as Uint8Array)
         loaded += value.length
       }
       
@@ -344,7 +346,7 @@ const loadAudioWithProgress = async (sound: Sound, path: string) => {
       }
     }
 
-    const blob = new Blob(chunks, { type: 'audio/mpeg' }) 
+    const blob = new Blob(chunks as BlobPart[], { type: 'audio/mpeg' }) 
     
     // Save to IndexedDB
     await saveToDB(path, blob)
