@@ -5,10 +5,75 @@
     <link rel="icon" type="image/svg+xml" href="/focus-station/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>focus-station</title>
-    <script type="module" crossorigin src="/focus-station/assets/index-CfUMNPSj.js"></script>
-    <link rel="stylesheet" crossorigin href="/focus-station/assets/index-BPMeAuPk.css">
+    <link rel="manifest" href="/focus-station/manifest.webmanifest">
+    <script type="module" crossorigin src="/focus-station/assets/index-CmvNvySD.js"></script>
+    <link rel="stylesheet" crossorigin href="/focus-station/assets/index-Bu9M42Tq.css">
   <link rel="manifest" href="/focus-station/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/focus-station/registerSW.js"></script></head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="loading-wrapper">
+        <div class="loading-spinner">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+        <p class="loading-text">Focus Station</p>
+      </div>
+    </div>
+    <style>
+      .loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f3f4f6;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .loading-spinner {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .circle {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #3b82f6;
+        animation: bounce 0.6s infinite alternate;
+      }
+      .circle:nth-child(2) {
+        animation-delay: 0.2s;
+        background-color: #6366f1;
+      }
+      .circle:nth-child(3) {
+        animation-delay: 0.4s;
+        background-color: #8b5cf6;
+      }
+      .loading-text {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #4b5563;
+        margin: 0;
+        letter-spacing: 0.05em;
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @media (prefers-color-scheme: dark) {
+        .loading-wrapper {
+          background-color: #111827;
+        }
+        .loading-text {
+          color: #e5e7eb;
+        }
+      }
+      @keyframes bounce {
+        from { transform: translateY(0); }
+        to { transform: translateY(-12px); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: .5; }
+      }
+    </style>
   </body>
 </html>
