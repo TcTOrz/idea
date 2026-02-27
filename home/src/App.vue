@@ -132,12 +132,12 @@ const toggleSearch = () => {
               探索前端技术，创造有趣的 Web 应用。
             </p>
             <div class="actions">
-              <a href="https://tctorz.github.io/" class="social-link" target="_blank">
+              <!-- <a href="https://tctorz.github.io/" class="social-link" target="_blank">
                 <span>访问博客</span>
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
-              </a>
+              </a> -->
               <button id="sponsorBtn" class="sponsor-link" @click="openModal">
                 <span>☕ 请我喝咖啡</span>
               </button>
