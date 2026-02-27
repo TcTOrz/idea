@@ -160,6 +160,59 @@ import { ref, computed, onUnmounted, onMounted } from 'vue'
 import { VideoPlay, VideoPause, Operation, Monitor, Pouring, CoffeeCup, Headset, Grape, Ship, HotWater, Sunny, Moon, Lightning, WindPower, Loading } from '@element-plus/icons-vue'
 import soundConfig from '../assets/sounds.json'
 
+// IndexedDB configuration
+const DB_NAME = 'focus-station-audio-db'
+const STORE_NAME = 'audio-files'
+const DB_VERSION = 1
+
+// Helper to open DB
+const openDB = (): Promise<IDBDatabase> => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, DB_VERSION)
+    request.onerror = () => reject(request.error)
+    request.onsuccess = () => resolve(request.result)
+    request.onupgradeneeded = (event) => {
+      const db = (event.target as IDBOpenDBRequest).result
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME)
+      }
+    }
+  })
+}
+
+// Helper to save blob to DB
+const saveToDB = async (key: string, blob: Blob) => {
+  try {
+    const db = await openDB()
+    const tx = db.transaction(STORE_NAME, 'readwrite')
+    const store = tx.objectStore(STORE_NAME)
+    store.put(blob, key)
+    return new Promise<void>((resolve, reject) => {
+      tx.oncomplete = () => resolve()
+      tx.onerror = () => reject(tx.error)
+    })
+  } catch (error) {
+    console.error('Error saving to DB:', error)
+  }
+}
+
+// Helper to get blob from DB
+const getFromDB = async (key: string): Promise<Blob | undefined> => {
+  try {
+    const db = await openDB()
+    const tx = db.transaction(STORE_NAME, 'readonly')
+    const store = tx.objectStore(STORE_NAME)
+    const request = store.get(key)
+    return new Promise((resolve, reject) => {
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => reject(request.error)
+    })
+  } catch (error) {
+    console.error('Error getting from DB:', error)
+    return undefined
+  }
+}
+
 interface Sound {
   id: string
   name: string
@@ -247,9 +300,17 @@ const encodeAudioPath = (path: string) => {
 }
 
 const loadAudioWithProgress = async (sound: Sound, path: string) => {
-  // If already cached, just return the blob URL
+  // If already cached in memory, return
   if (audioCache.has(path)) {
     return audioCache.get(path)!
+  }
+
+  // Check IndexedDB first
+  const cachedBlob = await getFromDB(path)
+  if (cachedBlob) {
+    const blobUrl = URL.createObjectURL(cachedBlob)
+    audioCache.set(path, blobUrl)
+    return blobUrl
   }
 
   sound.isLoading = true
@@ -284,8 +345,11 @@ const loadAudioWithProgress = async (sound: Sound, path: string) => {
     }
 
     const blob = new Blob(chunks, { type: 'audio/mpeg' }) 
-    const blobUrl = URL.createObjectURL(blob)
     
+    // Save to IndexedDB
+    await saveToDB(path, blob)
+    
+    const blobUrl = URL.createObjectURL(blob)
     audioCache.set(path, blobUrl)
     return blobUrl
   } catch (error) {
