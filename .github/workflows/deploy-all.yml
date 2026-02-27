@@ -45,6 +45,8 @@ jobs:
           cp -r css-effects-generator/dist/* public/css-effects-generator/
           cp -r focus-station/dist/* public/focus-station/
           cp index.html public/
+          cp manifest.json public/
+          cp sw.js public/
           cp favicon.svg public/
           cp -r assets public/
 
