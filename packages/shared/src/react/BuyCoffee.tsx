@@ -38,39 +38,39 @@ export const BuyCoffee: React.FC<BuyCoffeeProps> = ({ title, desc }) => {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
-          <div className="relative w-full max-w-md bg-white rounded-2xl shadow-xl p-6 transform transition-all animate-in fade-in zoom-in duration-200">
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/50 backdrop-blur-[5px]">
+          <div className="relative w-full max-w-[600px] bg-white rounded-[1.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] p-8 md:p-8 sm:p-6 p-4 transform transition-all animate-in fade-in zoom-in duration-300 w-[95%] md:w-[90%]">
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 transition-colors"
             >
               <X size={24} />
             </button>
             
-            <h2 className="text-xl font-bold text-center text-gray-900 mb-2">
+            <h2 className="text-[1.5rem] font-bold text-center text-gray-900 mb-2 mt-0">
               {getTitle()}
             </h2>
             
-            <p className="text-center text-gray-600 mb-6">
+            <p className="text-center text-gray-500 mb-6 font-medium">
               {getDesc()}
             </p>
 
-            <div className="flex justify-center gap-6">
+            <div className="flex justify-center gap-8 md:gap-8 gap-4 flex-wrap mt-6">
               <div className="text-center">
                 <img 
                   src={wechatPayImg} 
                   alt="WeChat Pay" 
-                  className="w-36 h-48 object-contain border rounded-lg shadow-sm bg-white"
+                  className="w-[200px] h-[280px] md:w-[200px] md:h-[280px] w-[150px] h-[210px] object-contain bg-white rounded-lg shadow-sm mb-2 border border-gray-200"
                 />
-                <p className="mt-2 text-sm text-gray-500">WeChat Pay</p>
+                <p className="mt-2 text-sm text-gray-500 font-medium">WeChat Pay</p>
               </div>
               <div className="text-center">
                 <img 
                   src={aliPayImg} 
                   alt="AliPay" 
-                  className="w-36 h-48 object-contain border rounded-lg shadow-sm bg-white"
+                  className="w-[200px] h-[280px] md:w-[200px] md:h-[280px] w-[150px] h-[210px] object-contain bg-white rounded-lg shadow-sm mb-2 border border-gray-200"
                 />
-                <p className="mt-2 text-sm text-gray-500">AliPay</p>
+                <p className="mt-2 text-sm text-gray-500 font-medium">AliPay</p>
               </div>
             </div>
           </div>

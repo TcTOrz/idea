@@ -10,31 +10,29 @@
     <el-icon><Coffee /></el-icon>
   </el-button>
 
-  <el-dialog
-    v-model="visible"
-    :title="displayTitle"
-    width="500px"
-    center
-    align-center
-    class="coffee-dialog"
-    append-to-body
-  >
-    <div class="text-center">
-      <p class="mb-4 text-gray-600 dark:text-gray-300">
-        {{ displayDesc }}
-      </p>
-      <div class="flex justify-center gap-6 mt-6">
-        <div class="text-center">
-          <img :src="wechatPayImg" alt="WeChat Pay" class="w-40 h-52 object-contain border rounded-lg shadow-sm bg-white" />
-          <p class="mt-2 text-sm text-gray-500">WeChat Pay</p>
-        </div>
-        <div class="text-center">
-          <img :src="aliPayImg" alt="AliPay" class="w-40 h-52 object-contain border rounded-lg shadow-sm bg-white" />
-          <p class="mt-2 text-sm text-gray-500">AliPay</p>
+  <Teleport to="body">
+    <Transition name="modal-fade">
+      <div v-if="visible" class="custom-modal" @click.self="visible = false">
+        <div class="custom-modal-content">
+          <button class="close-modal" @click="visible = false">&times;</button>
+          <h2 class="modal-title">{{ displayTitle }}</h2>
+          <p class="modal-desc">
+            {{ displayDesc }}
+          </p>
+          <div class="qr-container">
+            <div class="qr-item">
+              <img :src="wechatPayImg" alt="WeChat Pay" />
+              <p>WeChat Pay</p>
+            </div>
+            <div class="qr-item">
+              <img :src="aliPayImg" alt="AliPay" />
+              <p>AliPay</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </el-dialog>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -84,7 +82,125 @@ const displayDesc = computed(() => {
   transform: scale(1.1);
 }
 
-:global(.coffee-dialog .el-dialog__body) {
-  padding-top: 10px;
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 2001;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  /* Dark mode support if needed by parent apps, but index.html didn't have it explicitly besides vars. 
+     We'll stick to index.html styles which were white bg. */
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  transition: color 0.2s;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  color: #111827;
+}
+
+.modal-title {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: #111827;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.modal-desc {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.qr-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.qr-item {
+  text-align: center;
+}
+
+.qr-item img {
+  width: 200px;
+  height: 280px;
+  object-fit: contain;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.5rem;
+  border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 600px) {
+  .qr-item img {
+    width: 150px;
+    height: 210px;
+  }
+  .custom-modal-content {
+    padding: 1.5rem;
+    width: 95%;
+  }
+  .qr-container {
+    gap: 1rem;
+  }
+}
+
+.qr-item p {
+  color: #6b7280;
+  font-weight: 500;
+  margin: 0.5rem 0 0;
+}
+
+/* Transitions */
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-fade-enter-from,
+.modal-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-fade-enter-active .custom-modal-content,
+.modal-fade-leave-active .custom-modal-content {
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-fade-enter-from .custom-modal-content,
+.modal-fade-leave-to .custom-modal-content {
+  transform: translateY(20px);
 }
 </style>
