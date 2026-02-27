@@ -57,6 +57,7 @@ const messages = {
       dailyGoal: 'Daily Goal',
       reminderInterval: 'Reminder Interval',
       technique: 'Technique',
+      downloading: 'Downloading...',
       coffee: {
         title: 'Buy me a coffee',
         desc: 'If you like this project, please consider buying me a coffee!'
@@ -122,6 +123,7 @@ const messages = {
       dailyGoal: '每日目标',
       reminderInterval: '提醒间隔',
       technique: '呼吸法',
+      downloading: '音源下载中...',
       coffee: {
         title: '请我喝咖啡',
         desc: '如果这些工具对你有帮助，欢迎请我喝杯咖啡！'

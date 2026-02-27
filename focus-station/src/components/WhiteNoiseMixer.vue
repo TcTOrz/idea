@@ -67,26 +67,39 @@
         <div class="flex justify-between items-start">
           <!-- Icon -->
           <div 
-            class="w-10 h-10 rounded-lg flex items-center justify-center text-xl transition-colors duration-300"
+            class="relative w-10 h-10 rounded-lg flex items-center justify-center text-xl transition-colors duration-300"
             :class="[
               sound.enabled 
                 ? 'text-blue-600 bg-blue-100 dark:bg-blue-900/50 dark:text-blue-300' 
                 : 'text-gray-400 bg-white dark:bg-gray-600 dark:text-gray-400 group-hover:text-gray-600 group-hover:bg-gray-100'
             ]"
           >
-            <component :is="sound.icon" />
+            <component :is="sound.icon" v-if="!sound.isLoading" />
+            <div v-else class="flex flex-col items-center justify-center w-full h-full">
+               <el-icon class="animate-spin text-sm"><Loading /></el-icon>
+               <span class="text-[8px] leading-none mt-0.5 scale-75 whitespace-nowrap">{{ sound.loadingProgress }}%</span>
+            </div>
+            
+            <!-- Progress Ring Overlay -->
+            <div v-if="sound.isLoading" class="absolute bottom-0 left-0 right-0 h-1 bg-gray-200 rounded-b-lg overflow-hidden pointer-events-none">
+              <div class="h-full bg-blue-500 transition-all duration-300" :style="{ width: sound.loadingProgress + '%' }"></div>
+            </div>
           </div>
 
           <!-- Controls (Top Right) -->
-          <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200" :class="{ 'opacity-100': sound.enabled }" @click.stop>
+          <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200" :class="{ 'opacity-100': sound.enabled || sound.isLoading }" @click.stop>
              <!-- Variant Selector -->
              <el-dropdown 
                v-if="sound.files.length > 1" 
                trigger="click" 
                size="small"
                @command="(file: string) => changeSoundVariant(sound, file)"
+               :disabled="sound.isLoading"
              >
-               <button class="w-6 h-6 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors">
+               <button 
+                 class="w-6 h-6 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors"
+                 :class="{ 'opacity-50 cursor-not-allowed': sound.isLoading }"
+               >
                  <el-icon class="text-xs"><Operation /></el-icon>
                </button>
                <template #dropdown>
@@ -107,9 +120,11 @@
              <button 
                class="w-6 h-6 rounded-full flex items-center justify-center hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-400 hover:text-gray-600 transition-colors"
                @click.stop="toggleSound(sound)"
+               :disabled="sound.isLoading"
              >
                <el-icon class="text-sm">
                  <VideoPause v-if="sound.enabled" class="text-gray-800 dark:text-white" />
+                 <Loading v-else-if="sound.isLoading" class="animate-spin text-blue-500" />
                  <VideoPlay v-else />
                </el-icon>
              </button>
@@ -119,7 +134,7 @@
         <!-- Middle Info -->
         <div class="mt-1 mb-0.5">
           <h4 class="font-bold text-gray-800 dark:text-white text-sm truncate" :class="{ 'text-blue-600 dark:text-blue-400': sound.enabled }">
-            {{ sound.name }}
+            {{ sound.isLoading ? $t('app.downloading') : sound.name }}
           </h4>
           <!-- <p class="text-[10px] text-gray-400">{{ sound.category }}</p> -->
         </div>
@@ -142,7 +157,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onUnmounted, onMounted } from 'vue'
-import { VideoPlay, VideoPause, Operation, Monitor, Pouring, CoffeeCup, Headset, Grape, Ship, HotWater, Sunny, Moon, Lightning, WindPower } from '@element-plus/icons-vue'
+import { VideoPlay, VideoPause, Operation, Monitor, Pouring, CoffeeCup, Headset, Grape, Ship, HotWater, Sunny, Moon, Lightning, WindPower, Loading } from '@element-plus/icons-vue'
 import soundConfig from '../assets/sounds.json'
 
 interface Sound {
@@ -155,9 +170,12 @@ interface Sound {
   category: string
   files: string[]
   currentFile: string
+  isLoading: boolean
+  loadingProgress: number
 }
 
 const activeCategory = ref('all')
+const audioCache = new Map<string, string>() // Cache blob URLs
 
 // Map category names to icons
 const iconMap: Record<string, any> = {
@@ -228,13 +246,66 @@ const encodeAudioPath = (path: string) => {
   return path.split('/').map(segment => encodeURIComponent(segment)).join('/')
 }
 
-const changeSoundVariant = (sound: Sound, file: string) => {
+const loadAudioWithProgress = async (sound: Sound, path: string) => {
+  // If already cached, just return the blob URL
+  if (audioCache.has(path)) {
+    return audioCache.get(path)!
+  }
+
+  sound.isLoading = true
+  sound.loadingProgress = 0
+
+  try {
+    const encodedPath = encodeAudioPath(path)
+    const response = await fetch(encodedPath)
+    
+    if (!response.ok) throw new Error('Network response was not ok')
+    if (!response.body) throw new Error('ReadableStream not supported')
+
+    const contentLength = response.headers.get('Content-Length')
+    const total = contentLength ? parseInt(contentLength, 10) : 0
+    let loaded = 0
+
+    const reader = response.body.getReader()
+    const chunks: Uint8Array[] = []
+
+    while (true) {
+      const { done, value } = await reader.read()
+      if (done) break
+      
+      if (value) {
+        chunks.push(value)
+        loaded += value.length
+      }
+      
+      if (total) {
+        sound.loadingProgress = Math.round((loaded / total) * 100)
+      }
+    }
+
+    const blob = new Blob(chunks, { type: 'audio/mpeg' }) 
+    const blobUrl = URL.createObjectURL(blob)
+    
+    audioCache.set(path, blobUrl)
+    return blobUrl
+  } catch (error) {
+    console.error('Failed to load audio:', error)
+    return encodeAudioPath(path)
+  } finally {
+    sound.isLoading = false
+    sound.loadingProgress = 0
+  }
+}
+
+const changeSoundVariant = async (sound: Sound, file: string) => {
   if (sound.currentFile === file) return
   
   sound.audio.pause()
   sound.currentFile = file
-  // Use encoded path for Audio constructor
-  sound.audio = new Audio(encodeAudioPath(file))
+  
+  const src = await loadAudioWithProgress(sound, file)
+  
+  sound.audio = new Audio(src)
   sound.audio.loop = true
   sound.audio.volume = sound.volume / 100
   
@@ -243,11 +314,20 @@ const changeSoundVariant = (sound: Sound, file: string) => {
   }
 }
 
-const toggleSound = (sound: Sound) => {
-  sound.enabled = !sound.enabled
-  if (sound.enabled) {
+const toggleSound = async (sound: Sound) => {
+  if (!sound.enabled) {
+    if (!audioCache.has(sound.currentFile)) {
+       sound.audio.pause()
+       const src = await loadAudioWithProgress(sound, sound.currentFile)
+       sound.audio = new Audio(src)
+       sound.audio.loop = true
+       sound.audio.volume = sound.volume / 100
+    }
+    
+    sound.enabled = true
     sound.audio.play().catch((e: Error) => console.error("Audio play failed:", e))
   } else {
+    sound.enabled = false
     sound.audio.pause()
   }
 }
