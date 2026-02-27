@@ -15,15 +15,21 @@ export const BuyCoffee: React.FC<BuyCoffeeProps> = ({ title, desc }) => {
 
   const getTitle = () => {
     if (title) return title;
-    if (i18n.exists('app.coffee.title')) return t('app.coffee.title');
-    if (i18n.exists('coffee.title')) return t('coffee.title');
+    // Check if i18n is initialized and ready
+    if (i18n && i18n.isInitialized) {
+      if (i18n.exists('app.coffee.title')) return t('app.coffee.title');
+      if (i18n.exists('coffee.title')) return t('coffee.title');
+    }
     return 'Buy me a coffee';
   };
 
   const getDesc = () => {
     if (desc) return desc;
-    if (i18n.exists('app.coffee.desc')) return t('app.coffee.desc');
-    if (i18n.exists('coffee.desc')) return t('coffee.desc');
+    // Check if i18n is initialized and ready
+    if (i18n && i18n.isInitialized) {
+      if (i18n.exists('app.coffee.desc')) return t('app.coffee.desc');
+      if (i18n.exists('coffee.desc')) return t('coffee.desc');
+    }
     return 'If you like this project, please consider buying me a coffee!';
   };
 
