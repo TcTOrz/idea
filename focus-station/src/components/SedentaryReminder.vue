@@ -112,6 +112,7 @@ const isEnabled = useStorage('focus-station-sedentary-enabled', true)
 const lastMoveTime = useStorage('focus-station-last-move', Date.now())
 const maxTimeMinutes = useStorage('focus-station-sedentary-duration', 60)
 const elapsed = ref(0)
+const hasNotified = ref(false)
 
 const maxTime = computed(() => maxTimeMinutes.value * 60 * 1000)
 const circumference = 2 * Math.PI * 58
@@ -137,6 +138,7 @@ const formatTime = (ms: number) => {
 const reset = () => {
   lastMoveTime.value = Date.now()
   elapsed.value = 0
+  hasNotified.value = false
 }
 
 const toggleEnabled = () => {
@@ -151,15 +153,18 @@ useIntervalFn(() => {
     elapsed.value = Date.now() - lastMoveTime.value
     
     if (elapsed.value >= maxTime.value) {
-      // Trigger alarm/notification
-      ElNotification({
-        title: t('app.sedentaryWarning'),
-        message: t('app.timeToMove'),
-        type: 'warning',
-        duration: 0 // Sticky
-      })
-      // Reset after notifying to avoid spam, or implement "snooze"
-      // For now, just keep counting but maybe cap it visually?
+      if (!hasNotified.value) {
+        // Trigger alarm/notification
+        ElNotification({
+          title: t('app.sedentaryWarning'),
+          message: t('app.timeToMove'),
+          type: 'warning',
+          duration: 0 // Sticky
+        })
+        hasNotified.value = true
+      }
+    } else {
+      hasNotified.value = false
     }
   }
 }, 1000)
