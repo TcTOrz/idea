@@ -19,3 +19,9 @@ app.use(ElementPlus)
 app.use(i18n)
 app.use(pinia)
 app.mount('#app')
+
+// Remove loading screen
+const loading = document.querySelector('.loading-wrapper')
+if (loading) {
+  loading.remove()
+}
