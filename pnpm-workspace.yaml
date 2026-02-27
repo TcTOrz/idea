@@ -5,4 +5,5 @@ packages:
   - 'diff-checker'
   - 'css-effects-generator'
   - 'focus-station'
+  - 'home'
   - 'packages/*'

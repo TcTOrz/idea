@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "live-server . --port=8080",
+    "dev:home": "pnpm --filter home dev",
     "dev:color": "pnpm --filter color-wizard dev",
     "dev:json": "pnpm --filter json-toolkit dev",
     "dev:regex": "pnpm --filter regex-visualizer dev",
