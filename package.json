@@ -11,6 +11,7 @@
     "dev:diff": "pnpm --filter diff-checker dev",
     "dev:css": "pnpm --filter css-effects-generator dev",
     "dev:focus": "pnpm --filter focus-station dev",
+    "dev:image": "pnpm --filter image-lab dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test"
   },

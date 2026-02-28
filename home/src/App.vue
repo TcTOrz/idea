@@ -51,6 +51,13 @@ const projects = [
     title: 'CSS Effects',
     desc: 'CSS 高级效果生成器。包含毛玻璃、新拟态、多层阴影等效果，实时预览与代码生成。',
     tags: ['CSS', 'Design']
+  },
+  {
+    href: '/image-lab/',
+    icon: '🖼️',
+    title: 'Image Lab',
+    desc: '隐私优先的图片处理工坊。纯前端实现图片压缩、格式转换（WebP/AVIF）、裁剪缩放。',
+    tags: ['Image', 'Tool']
   }
 ]
 

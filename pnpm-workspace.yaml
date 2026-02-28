@@ -6,4 +6,5 @@ packages:
   - 'css-effects-generator'
   - 'focus-station'
   - 'home'
+  - 'image-lab'
   - 'packages/*'

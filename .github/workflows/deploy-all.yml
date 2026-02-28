@@ -41,6 +41,7 @@ jobs:
           mkdir -p public/diff-checker
           mkdir -p public/css-effects-generator
           mkdir -p public/focus-station
+          mkdir -p public/image-lab
 
           cp -r json-toolkit/dist/* public/json-toolkit/
           cp -r color-wizard/dist/* public/color-wizard/
@@ -48,6 +49,7 @@ jobs:
           cp -r diff-checker/dist/* public/diff-checker/
           cp -r css-effects-generator/dist/* public/css-effects-generator/
           cp -r focus-station/dist/* public/focus-station/
+          cp -r image-lab/dist/* public/image-lab/
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

@@ -43,6 +43,7 @@ export default defineConfig({
           /^\/regex-visualizer/,
           /^\/diff-checker/,
           /^\/css-effects-generator/,
+          /^\/image-lab/,
           /^\/ads.txt/,
           /^\/robots.txt/,
           /^\/sitemap.xml/
