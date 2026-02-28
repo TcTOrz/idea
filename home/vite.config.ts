@@ -42,7 +42,10 @@ export default defineConfig({
           /^\/color-wizard/,
           /^\/regex-visualizer/,
           /^\/diff-checker/,
-          /^\/css-effects-generator/
+          /^\/css-effects-generator/,
+          /^\/ads.txt/,
+          /^\/robots.txt/,
+          /^\/sitemap.xml/
         ]
       }
     })
