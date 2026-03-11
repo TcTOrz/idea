@@ -12,6 +12,7 @@
     "dev:css": "pnpm --filter css-effects-generator dev",
     "dev:focus": "pnpm --filter focus-station dev",
     "dev:image": "pnpm --filter image-lab dev",
+    "dev:timestamp": "pnpm --filter timestamp-converter dev",
     "build": "pnpm -r build",
     "test": "pnpm -r test"
   },

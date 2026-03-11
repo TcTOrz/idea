@@ -58,6 +58,13 @@ const projects = [
     title: 'Image Lab',
     desc: '隐私优先的图片处理工坊。纯前端实现图片压缩、格式转换（WebP/AVIF）、裁剪缩放。',
     tags: ['Image', 'Tool']
+  },
+  {
+    href: '/timestamp-converter/',
+    icon: '⏰',
+    title: 'Timestamp Converter',
+    desc: '时间戳在线转换工具。支持当前时间戳查看，时间戳与日期相互转换，毫秒/秒单位切换。',
+    tags: ['Timestamp', 'Tool']
   }
 ]
 

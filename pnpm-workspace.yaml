@@ -7,4 +7,5 @@ packages:
   - 'focus-station'
   - 'home'
   - 'image-lab'
+  - 'timestamp-converter'
   - 'packages/*'
