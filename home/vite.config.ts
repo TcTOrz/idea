@@ -44,6 +44,7 @@ export default defineConfig({
           /^\/diff-checker/,
           /^\/css-effects-generator/,
           /^\/image-lab/,
+          /^\/timestamp-converter/,
           /^\/ads.txt/,
           /^\/robots.txt/,
           /^\/sitemap.xml/
