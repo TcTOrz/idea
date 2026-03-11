@@ -78,7 +78,20 @@ const themes = [
 ]
 
 const currentThemeIndex = ref(0)
-const currentTheme = computed(() => themes[currentThemeIndex.value])
+const currentTheme = computed(() => themes[currentThemeIndex.value] || themes[0])
+
+const timeDisplay = computed(() => {
+  const str = currentTimeFormatted.value
+  if (!str) return { date: '', hm: '', s: '' }
+  const [date, time] = str.split(' ')
+  if (!time) return { date: date || '', hm: '', s: '' }
+  const tParts = time.split(':')
+  return {
+    date,
+    hm: tParts.slice(0, 2).join(':'),
+    s: tParts[2] || ''
+  }
+})
 
 const randomizeTheme = () => {
   currentThemeIndex.value = Math.floor(Math.random() * themes.length)
@@ -744,20 +757,20 @@ onUnmounted(() => {
            :class="currentTheme?.containerClass || ''">
         
         <!-- Time Display -->
-        <div class="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-2 md:gap-4 tabular-nums transition-all duration-700 animate-float drop-shadow-2xl w-full text-center">
-           <div class="text-[25vw] md:text-[18vw] font-bold leading-none tracking-tighter select-none" :class="currentTheme?.text">
-             {{ currentTimeFormatted.split(' ')[1].split(':').slice(0, 2).join(':') }}
-           </div>
-           <div class="text-[10vw] md:text-[8vw] font-medium opacity-80 select-none" :class="currentTheme?.text">
-             {{ currentTimeFormatted.split(' ')[1].split(':')[2] }}
-           </div>
-        </div>
+      <div class="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-2 md:gap-4 tabular-nums transition-all duration-700 animate-float drop-shadow-2xl w-full text-center">
+         <div class="text-[25vw] md:text-[18vw] font-bold leading-none tracking-tighter select-none" :class="currentTheme?.text">
+           {{ timeDisplay.hm }}
+         </div>
+         <div class="text-[10vw] md:text-[8vw] font-medium opacity-80 select-none" :class="currentTheme?.text">
+           {{ timeDisplay.s }}
+         </div>
+      </div>
 
-        <!-- Date Display -->
-        <div class="text-[6vw] md:text-[4vw] mt-4 md:mt-8 transition-all duration-700 uppercase select-none text-center px-4"
-             :class="currentTheme?.subText">
-          {{ dayjs(currentTimestampMs).format('YYYY / MM / DD dddd') }}
-        </div>
+      <!-- Date Display -->
+      <div class="text-[6vw] md:text-[4vw] mt-4 md:mt-8 transition-all duration-700 uppercase select-none text-center px-4"
+           :class="currentTheme?.subText">
+        {{ dayjs(currentTimestampMs).format('YYYY / MM / DD dddd') }}
+      </div>
       </div>
       
       <!-- Hint -->
