@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { useFullscreen } from '@vueuse/core'
+import { useFullscreen, useEventListener } from '@vueuse/core'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
@@ -77,16 +77,43 @@ const themes = [
   }
 ]
 
-const currentTheme = ref(themes[0])
+const currentThemeIndex = ref(0)
+const currentTheme = computed(() => themes[currentThemeIndex.value])
 
 const randomizeTheme = () => {
-  const idx = Math.floor(Math.random() * themes.length)
-  currentTheme.value = themes[idx]
+  currentThemeIndex.value = Math.floor(Math.random() * themes.length)
+}
+
+const nextTheme = () => {
+  currentThemeIndex.value = (currentThemeIndex.value + 1) % themes.length
+}
+
+const prevTheme = () => {
+  currentThemeIndex.value = (currentThemeIndex.value - 1 + themes.length) % themes.length
 }
 
 watch(isFullscreen, (val) => {
   if (val) {
     randomizeTheme()
+  }
+})
+
+// Keyboard & Scroll Navigation
+useEventListener('keydown', (e) => {
+  if (!isFullscreen.value) return
+  if (e.key === 'ArrowUp' || e.key === 'ArrowRight') {
+    nextTheme()
+  } else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') {
+    prevTheme()
+  }
+})
+
+useEventListener('wheel', (e) => {
+  if (!isFullscreen.value) return
+  if (e.deltaY > 0) {
+    nextTheme()
+  } else {
+    prevTheme()
   }
 })
 
@@ -705,37 +732,37 @@ onUnmounted(() => {
     </div>
     <!-- Fullscreen Overlay -->
     <div v-if="isFullscreen" 
-         class="fixed inset-0 z-[9999] flex flex-col items-center justify-center cursor-pointer select-none transition-all duration-1000 ease-in-out overflow-hidden"
-         :class="currentTheme.bg"
+         class="fixed inset-0 z-[9999] flex flex-col items-center justify-center cursor-pointer select-none transition-all duration-1000 ease-in-out overflow-hidden w-screen h-screen"
+         :class="currentTheme?.bg"
          @click="toggleFullscreen">
       
       <!-- Background Effects -->
-      <div v-if="currentTheme.specialEffect === 'matrix'" class="absolute inset-0 bg-[url('https://fontmeme.com/permalink/240101/matrix-font.png')] opacity-10 animate-pulse"></div>
+      <div v-if="currentTheme && currentTheme.specialEffect === 'matrix'" class="absolute inset-0 bg-[url('https://fontmeme.com/permalink/240101/matrix-font.png')] opacity-10 animate-pulse"></div>
       
       <!-- Content Container -->
       <div class="relative z-10 flex flex-col items-center justify-center transition-all duration-700"
-           :class="currentTheme.containerClass || ''">
+           :class="currentTheme?.containerClass || ''">
         
         <!-- Time Display -->
-        <div class="flex items-baseline gap-2 md:gap-4 tabular-nums transition-all duration-700 animate-float drop-shadow-2xl">
-           <div class="text-[18vw] md:text-[15vw] font-bold leading-none tracking-tighter select-none" :class="currentTheme.text">
+        <div class="flex flex-col md:flex-row items-center md:items-baseline justify-center gap-2 md:gap-4 tabular-nums transition-all duration-700 animate-float drop-shadow-2xl w-full text-center">
+           <div class="text-[25vw] md:text-[18vw] font-bold leading-none tracking-tighter select-none" :class="currentTheme?.text">
              {{ currentTimeFormatted.split(' ')[1].split(':').slice(0, 2).join(':') }}
            </div>
-           <div class="text-[8vw] md:text-[6vw] font-medium opacity-80 select-none" :class="currentTheme.text">
+           <div class="text-[10vw] md:text-[8vw] font-medium opacity-80 select-none" :class="currentTheme?.text">
              {{ currentTimeFormatted.split(' ')[1].split(':')[2] }}
            </div>
         </div>
 
         <!-- Date Display -->
-        <div class="text-[5vw] md:text-[3vw] mt-6 md:mt-8 transition-all duration-700 uppercase select-none"
-             :class="currentTheme.subText">
+        <div class="text-[6vw] md:text-[4vw] mt-4 md:mt-8 transition-all duration-700 uppercase select-none text-center px-4"
+             :class="currentTheme?.subText">
           {{ dayjs(currentTimestampMs).format('YYYY / MM / DD dddd') }}
         </div>
       </div>
       
       <!-- Hint -->
       <div class="absolute bottom-10 text-sm animate-pulse opacity-40 font-light select-none"
-           :class="currentTheme.subText">
+           :class="currentTheme?.subText">
         {{ t('exitFullscreen') }}
       </div>
     </div>
